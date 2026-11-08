@@ -9,7 +9,7 @@ test('status inválido',()=>assert.throws(()=>validateRoute({...valid(),status:9
 test('atraso limitado',()=>assert.throws(()=>validateRoute({...valid(),delay:5000})));
 test('IDs duplicados',()=>assert.throws(()=>validateRoutes([valid(),{...valid(),path:'/api/other'}])));
 test('método/caminho duplicados',()=>assert.throws(()=>validateRoutes([valid(),{...valid(),id:'other'}])));
-test('limite de rotas',()=>assert.throws(()=>validateRoutes(Array.from({length:31},(_,i)=>({...valid(),id:`r${i}`,path:`/api/${i}`})))); 
+test('limite de rotas',()=>assert.throws(()=>validateRoutes(Array.from({length:31},(_,i)=>({...valid(),id:`r${i}`,path:`/api/${i}`}))))); 
 test('match de método e caminho',()=>{assert.equal(matchRoute(DEFAULT_ROUTES,'GET','/api/hello').id,'hello');assert.equal(matchRoute(DEFAULT_ROUTES,'DELETE','/api/hello'),undefined);});
 test('integração HTTP, configuração e respostas',async()=>{
  const server=createApp();await new Promise(r=>server.listen(0,'127.0.0.1',r));
